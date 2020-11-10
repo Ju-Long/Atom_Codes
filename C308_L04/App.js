@@ -50,22 +50,16 @@ class Eats extends React.Component {
 
 class Clock extends React.Component {
   render() {
-    return (
-      <Text>
-        {this.props.name} - {this.props.time}
-      </Text>
-    );
+    let location = this.props.name;
+    var time = moment().tz({location}).format('HH mm Z');
+    return ({location} - {time});
   }
 }
 
-const WorldClock = (props) => {
-  let time = moment().tz(props.location).format('HH mm Z');
-  let input = {
-    name: props.location,
-    time: props.time,
-  };
-  var clock = new Clock(input);
-  return clock;
+const WorldClock = () => {
+  var output = "";
+  output += <Clock name="Asia/Singapore"/>;
+  return <Text>{output}</Text>;
 };
 
 const App: () => React$Node = () => {
@@ -104,7 +98,7 @@ const App: () => React$Node = () => {
               <Eats name="Western Cuisine @ Koufu" location="E1 Level, Koufu" />
               <Eats name="Ayam Penyet" location="W4/W6 Lawn Cateen" />
 
-              <WorldClock location="Asia/Singapore" />
+              <WorldClock />
             </View>
           </View>
         </ScrollView>
