@@ -51,15 +51,24 @@ class Eats extends React.Component {
 class Clock extends React.Component {
   render() {
     let location = this.props.name;
-    var time = moment().tz({location}).format('HH mm Z');
-    return ({location} - {time});
+    var time = moment().tz(location).format('HH mm Z');
+    return <Text>{location} - {time}</Text>;
   }
 }
 
 const WorldClock = () => {
-  var output = "";
-  output += <Clock name="Asia/Singapore"/>;
-  return <Text>{output}</Text>;
+  var output1 = <Clock name="Asia/Singapore" />;
+  var output2 = <Clock name="Europe/London" />;
+  var output3 = <Clock name="America/New_York" />;
+  var output4 = <Clock name="Europe/Oslo" />;
+  return (
+      <View>
+        <Clock name="Asia/Singapore" />
+        <Clock name="Europe/London" />
+        <Clock name="America/New_York" />
+        <Clock name="Europe/Oslo" />
+      </View>
+  );
 };
 
 const App: () => React$Node = () => {
@@ -94,7 +103,6 @@ const App: () => React$Node = () => {
               <Eats name="Crowded Bowl" location="W4/W6 Lawn Cateen" />
               <Eats name="Western Cuisine @ Koufu" location="E1 Level, Koufu" />
               <Eats name="Ayam Penyet" location="W4/W6 Lawn Cateen" />
-              <Text/>
 
               <WorldClock />
             </View>
