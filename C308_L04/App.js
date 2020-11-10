@@ -57,10 +57,6 @@ class Clock extends React.Component {
 }
 
 const WorldClock = () => {
-  var output1 = <Clock name="Asia/Singapore" />;
-  var output2 = <Clock name="Europe/London" />;
-  var output3 = <Clock name="America/New_York" />;
-  var output4 = <Clock name="Europe/Oslo" />;
   return (
       <View>
         <Clock name="Asia/Singapore" />
