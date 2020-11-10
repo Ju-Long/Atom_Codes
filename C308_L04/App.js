@@ -90,13 +90,11 @@ const App: () => React$Node = () => {
               <Text />
 
               <Text>Recommended Eats @ RP </Text>
-              <Eats
-                name="Sweet Tooth Waffles"
-                location="W6 Level 1, E-canteen"
-              />
+              <Eats name="Sweet Tooth Waffles" location="W6 Level 1, E-canteen"/>
               <Eats name="Crowded Bowl" location="W4/W6 Lawn Cateen" />
               <Eats name="Western Cuisine @ Koufu" location="E1 Level, Koufu" />
               <Eats name="Ayam Penyet" location="W4/W6 Lawn Cateen" />
+              <Text/>
 
               <WorldClock />
             </View>
