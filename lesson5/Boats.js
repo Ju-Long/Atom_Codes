@@ -40,6 +40,13 @@ const PRODUCTS_DATA = [
     },
 ];
 
-const Boats = () => {
-  return 
+export const BoatsList = () => {
+  return (
+    PRODUCTS_DATA.map(data =>
+      <View>
+        <Text > {data.name} {'\n'} {data.description} </Text>
+        <Image source={data.picture} />
+      </View>
+    )
+  );
 }

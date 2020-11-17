@@ -1,6 +1,6 @@
 import React from 'react';
 import {MovieList} from './Movie.js';
-// import {Boats} from './Boats.js';
+import {BoatsList} from './Boats.js';
 import {
   View,
   Text,
@@ -13,6 +13,8 @@ const App: () => React$Node = () => {
     <ScrollView>
       <Text>Lesson 05 Exercise</Text>
       <MovieList/>
+      <Text>Get A Boat - For Sale</Text>
+      <BoatsList/>
     </ScrollView>
     );
 };
