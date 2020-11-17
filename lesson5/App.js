@@ -1,17 +1,19 @@
 import React from 'react';
 import {MovieList} from './Movie.js';
+// import {Boats} from './Boats.js';
 import {
   View,
   Text,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 
 const App: () => React$Node = () => {
   return (
-    <View>
+    <ScrollView>
       <Text>Lesson 05 Exercise</Text>
       <MovieList/>
-    </View>
+    </ScrollView>
     );
 };
 

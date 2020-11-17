@@ -2,7 +2,8 @@ import React from 'react';
 import {
   View,
   Text,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 
 const movie = {
@@ -23,26 +24,19 @@ const MOVIE_DATA = [{
 ];
 
 const MovieList = () => {
-  return MOVIE_DATA.map(data =>
-    <View>
-      <Text > {data.title} {'\n'} {data.year} </Text>
-      <Image source={data.poster} />
-    </View>
+  return (
+    MOVIE_DATA.map(data =>
+      <View>
+        <Text > {data.title} {'\n'} {data.year} </Text>
+        <Image source={data.poster} />
+      </View>
+    )
   );
 }
 
 class Movie extends React.Component {
   render() {
-    return ( <
-      Text > {
-        movie.title
-      } {
-        '\n'
-      } {
-        movie.year
-      } <
-      /Text>
-    );
+    return ( <Text > {movie.title} {'\n'} {movie.year} </Text>);
   }
 }
 

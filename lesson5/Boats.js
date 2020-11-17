@@ -1,5 +1,5 @@
 import React from 'react';
-import { } from "react-native";
+import {View, Text, Image} from "react-native";
 
 const PRODUCTS_DATA = [
     {
@@ -40,3 +40,6 @@ const PRODUCTS_DATA = [
     },
 ];
 
+const Boats = () => {
+  return 
+}
