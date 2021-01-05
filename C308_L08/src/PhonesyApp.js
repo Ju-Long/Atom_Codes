@@ -1,71 +1,83 @@
 import React from 'react';
-import {StyleSheet, View, FlatList, Image, Text} from 'react-native';
+import {StyleSheet, View, FlatList, Image, Text, SectionList} from 'react-native';
 
 const datasource = [
   {
-    name: 'iPhone XR',
-    brand: 'Apple',
-    image: require('./img/iphonexr.jpg')
+    data: [
+      {
+        name: 'iPhone XR',
+        brand: 'Apple',
+        image: require('./img/iphonexr.jpg')
+      }, {
+        name: 'Redmi Note 7 and 7 Pro',
+        brand: 'Xiaomi',
+        image: require('./img/redminote7.jpg')
+      }, {
+        name: 'P30 and P30 Pro',
+        brand: 'Huawei',
+        image: require('./img/p30.jpg')
+      }
+    ], title: "More Than 20 Million Sold"
   }, {
-    name: 'Redmi Note 7 and 7 Pro',
-    brand: 'Xiaomi',
-    image: require('./img/redminote7.jpg')
+    data: [
+      {
+        name: 'iPhone 7 Plus',
+        brand: 'Apple',
+        image: require('./img/iphone7plus.jpg')
+      }, {
+        name: 'Mate 20 and Mate 20 Pro',
+        brand: 'Huawei',
+        image: require('./img/mate20.png')
+      }, {
+        name: 'Galaxy A10',
+        brand: 'Samsung',
+        image: require('./img/a10.jpg')
+      }, {
+        name: 'Galaxy A50',
+        brand: 'Samsung',
+        image: require('./img/a50.jpg')
+      }, {
+        name: 'iPhone 8',
+        brand: 'Apple',
+        image: require('./img/iphone8.jpg')
+      }, {
+        name: 'Redmi 6A',
+        brand: 'Xiaomi',
+        image: require('./img/redmi6a.jpg')
+      }
+    ], title: "More than 10 Million Sold"
   }, {
-    name: 'P30 and P30 Pro',
-    brand: 'Huawei',
-    image: require('./img/p30.jpg')
-  }, {
-    name: 'iPhone 7 Plus',
-    brand: 'Apple',
-    image: require('./img/iphone7plus.jpg')
-  }, {
-    name: 'Mate 20 and Mate 20 Pro',
-    brand: 'Huawei',
-    image: require('./img/mate20.png')
-  }, {
-    name: 'Galaxy A10',
-    brand: 'Samsung',
-    image: require('./img/a10.jpg')
-  }, {
-    name: 'Galaxy A50',
-    brand: 'Samsung',
-    image: require('./img/a50.jpg')
-  }, {
-    name: 'iPhone 8',
-    brand: 'Apple',
-    image: require('./img/iphone8.jpg')
-  }, {
-    name: 'Redmi 6A',
-    brand: 'Xiaomi',
-    image: require('./img/redmi6a.jpg')
-  }, {
-    name: 'A5',
-    brand: 'Oppo',
-    image: require('./img/a5.png')
-  }, {
-    name: 'iPhone Xs Max',
-    brand: 'Apple',
-    image: require('./img/iphonexsmax.jpg')
-  }, {
-    name: 'Galaxy A30',
-    brand: 'Samsung',
-    image: require('./img/a30.jpg')
-  }, {
-    name: 'Galaxy S10+',
-    brand: 'Samsung',
-    image: require('./img/s10plus.jpg')
-  }, {
-    name: 'Galaxy S10',
-    brand: 'Samsung',
-    image: require('./img/s10.jpg')
-  }, {
-    name: 'Galaxy S10e',
-    brand: 'Samsung',
-    image: require('./img/s10e.jpg')
-  }, {
-    name: 'Galaxy S10 5G',
-    brand: 'Samsung',
-    image: require('./img/s105g.jpg')
+    data: [
+      {
+        name: 'A5',
+        brand: 'Oppo',
+        image: require('./img/a5.png')
+      }, {
+        name: 'iPhone Xs Max',
+        brand: 'Apple',
+        image: require('./img/iphonexsmax.jpg')
+      }, {
+        name: 'Galaxy A30',
+        brand: 'Samsung',
+        image: require('./img/a30.jpg')
+      }, {
+        name: 'Galaxy S10+',
+        brand: 'Samsung',
+        image: require('./img/s10plus.jpg')
+      }, {
+        name: 'Galaxy S10',
+        brand: 'Samsung',
+        image: require('./img/s10.jpg')
+      }, {
+        name: 'Galaxy S10e',
+        brand: 'Samsung',
+        image: require('./img/s10e.jpg')
+      }, {
+        name: 'Galaxy S10 5G',
+        brand: 'Samsung',
+        image: require('./img/s105g.jpg')
+      }
+    ], title: "Less than 10 Million Sold"
   }
 ];
 
@@ -74,16 +86,18 @@ const PhonesyApp: () => React$Node = () => {
     <View style={styles.header}>
       <Text style={styles.headerMsg}>List of Best Selling Mobile Phones</Text>
     </View>
-    <FlatList data={datasource} renderItem={renderItem}/>
+    <SectionList sections={datasource}
+      renderItem={renderItem}
+      renderSectionHeader={renderHeader}/>
   </View>);
 };
 
 const styles = StyleSheet.create({
   section: {
-    borderWidth: 1,
-    borderBottomColor: 'black',
     flexDirection: 'row',
-    padding: 10
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'black'
   },
   image: {
     width: 100,
@@ -123,5 +137,9 @@ const renderItem = ({item}) => {
     </View>
   </View>
 };
+
+const renderHeader = ({section: {title}}) => {
+  return <Text style={{fontSize: 20, fontWeight: 'bold', alignSelf: 'center'}}>{title}</Text>
+}
 
 export default PhonesyApp;
