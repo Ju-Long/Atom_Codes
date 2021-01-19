@@ -24,15 +24,15 @@ const AddExpenseScreen = ({navigation}) => {
       <TextInput style={styles.inputBox} onChangeText={text => setAmount(text)} placeholder={amount}/>
       <TextInput style={styles.inputBox} onChangeText={text => setDescription(text)} placeholder={description}/>
       <Picker selectedValue={category} onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}>
-         <Picker.item label="Entertainment" value="entertainment"/>
-         <Picker.item label="Food" value="food"/>
-         <Picker.item label="Transport" value="transport"/>
+         <Picker.item label="Entertainment" value="Entertainment"/>
+         <Picker.item label="Food" value="Food"/>
+         <Picker.item label="Transport" value="Transport"/>
       </Picker>
       <View style={styles.buttons}>
          <TouchableHighlight onPress={() => navigation.navigate('View Expense', {
-               amount: {amount},
-               description: {description},
-               category: {category}})}>
+               amount: amount,
+               description: description,
+               category: category})}>
             <View style={styles.button}>
                <Image source={require('../images/expense_icon.png')}/>
                <Text>Add Expense</Text>

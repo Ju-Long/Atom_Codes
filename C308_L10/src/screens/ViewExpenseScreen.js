@@ -14,15 +14,17 @@ import {Picker} from '@react-native-picker/picker';
 const ViewExpenseScreen = ({route, navigation}) => {
   return (
     <View>
-      <Text>Amount: {route.params}</Text>
-      <Text>Description: </Text>
-      <Text>Category: </Text>
+      <Text style={styles.text}>Amount: {route.params.amount}</Text>
+      <Text style={styles.text}>Description: {route.params.description}</Text>
+      <Text style={styles.text}>Category: {route.params.category}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-
+   text: {
+      marginVertical: 30
+   }
 });
 
 export default ViewExpenseScreen;
