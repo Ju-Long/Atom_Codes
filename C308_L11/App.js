@@ -6,7 +6,7 @@ import Challenge from './src/challenge.js';
 
 const App: () => React$Node = () => {
   return (<View style={styles.display}>
-    <Challenge/>
+    <Exercises/>
   </View>
   );
 };
