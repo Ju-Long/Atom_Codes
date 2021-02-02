@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text, TextInput, Button, ImageBackground} from 'react-native';
 
-const ValistApp: () => React$Node = () => {
+import React, {useState} from 'react';
+import {StyleSheet, View, Text, TextInput, Button, ImageBackground, Alert} from 'react-native';
+
+const ValistApp: () => React$Node = ({navigation}) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -12,7 +13,34 @@ const ValistApp: () => React$Node = () => {
           <TextInput style={styles.textinput} placeholder="Email" onChangeText={text => setEmail(text)}/>
           <TextInput style={styles.textinput} placeholder="Phone Number" onChangeText={text => setPhone(text)}/>
           <View style={styles.button}><Button title='Sign Up' color='white' onPress={() => {
-
+            fetch('http://jsonplaceholder.typicode.com/users', {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                username: {username},
+                email: {email},
+                phone: {phone}
+              }),
+            })
+            .then(response => response.json())
+            .then(responseJson => {
+              Alert.alert("", "User account is created with ID: " + responseJson.id, [
+              {
+                text: "Welcome",
+                onPress: () => {navigation.navigate('Welcome')}
+              }, {
+                text: "Ok",
+                onPress: () => console.log("OK Pressed"),
+                style: "cancel"
+              }
+            ], {cancelable: false})
+            })
+            .catch(error => {
+              console.error(error);
+            });
           }}/></View>
         </ImageBackground>
     );
