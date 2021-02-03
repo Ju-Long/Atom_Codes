@@ -1,21 +1,56 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList, 
+  Image,
+  TouchableHighlight,
+  Alert
+} from 'react-native';
 
-export default function App() {
+const App: () => React$Node = () => {
+  const [users, setUsers] = useState();
+    useEffect(() => {
+      fetch('https://randomuser.me/api/?inc=name,picture,phone,id&results=12')
+    .then(response => response.json())
+    .then(responseJson => {
+      setUsers(responseJson.results);
+      console.log(users);
+    })
+    }, []);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <FlatList data={users} renderItem={({item}) => (
+        <View style={styles.list}>
+          <Image source={{uri: item.picture.large}} style={styles.thumbnail}/>
+          <Text>{item.name.first} {item.name.last}</Text>
+          <TouchableHighlight onPress={() => {
+            Alert.alert("", item.phone)
+            console.log("Hello");
+          }}>
+          <Image source={require('./image/phone.png')} style={styles.image}/>
+          </TouchableHighlight>
+        </View>
+      )
+      }/>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  list: {
+    width: '100%',
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }, image: {
+    width: 50,
+    height: 50
+  }, thumbnail: {
+    width: 50,
+    height: 50
+  }
 });
+
+export default App;
