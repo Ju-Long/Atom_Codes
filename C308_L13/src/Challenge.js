@@ -16,9 +16,8 @@ import {
     Button
 } from 'react-native';
 
-const FanoidApp: () => React$Node = () => {
-    const [character, SetCharacter] = useState();
-    const [randomCharacter, setRandomCharacter] = useState({name: "nothing yet"});
+const Challenge: () => React$Node = () => {
+    const [character, SetCharacter] = useState([]);
 
     useEffect(() => {
         fetch('http://hp-api.herokuapp.com/api/characters')
@@ -29,7 +28,7 @@ const FanoidApp: () => React$Node = () => {
       })
       }, []);
 
-    return (
+      return (
         <Container>
             <Header style={{backgroundColor: '#740001'}}>
                 <Text style={{fontSize: 25, color: '#EEBA30'}}>
@@ -37,19 +36,13 @@ const FanoidApp: () => React$Node = () => {
                 </Text>
             </Header>
             <Content>
-                <View style={styles.button}>
-                    <Button title="Random Character" onPress={() => {
-                        var random = Math.floor(Math.random() * character.length)
-                        setRandomCharacter(character[random]);
-                        console.log(randomCharacter);
-                    }} color='#770001'/>
-                </View>
-                <Card>
+            {character.map(i => { 
+                    <Card>
                     <CardItem cardBody style={styles.cardbody}>
-                        <Image source={{uri: randomCharacter.image}} style={{height: 200, width: 200}}/>
+                        <Image source={{uri: i.image}} style={{height: 200, width: 200}}/>
                         <View style={styles.textBody}>
-                            <Text>{randomCharacter.name}</Text>
-                            <Text>{randomCharacter.house}</Text>
+                            <Text>{i.name}</Text>
+                            <Text>{i.house}</Text>
                         </View>
                     </CardItem>
                     <CardItem style={styles.starContainer}>
@@ -57,6 +50,7 @@ const FanoidApp: () => React$Node = () => {
                         <Text>Favourite</Text>
                     </CardItem>
                 </Card>
+                })}
             </Content>
         </Container>
     );
@@ -86,6 +80,5 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center'
     }
-})
-
-export default FanoidApp;
+});
+export default Challenge;
