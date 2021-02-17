@@ -1,55 +1,38 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList, 
-  Image,
-  TouchableHighlight,
-  Alert
+  StyleSheet, TextInput, View, Button
 } from 'react-native';
 
+
 const App: () => React$Node = () => {
-  const [users, setUsers] = useState();
-    useEffect(() => {
-      fetch('https://randomuser.me/api/?inc=name,picture,phone,id&results=12')
-    .then(response => response.json())
-    .then(responseJson => {
-      setUsers(responseJson.results);
-      console.log(users);
-    })
-    }, []);
+  const [date, setDate] = useState("")
+  const [aqi, setAqi] = useState("")
+  const [data, setData] = useState()
   return (
-    <View>
-      <FlatList data={users} renderItem={({item}) => (
-        <View style={styles.list}>
-          <Image source={{uri: item.picture.large}} style={styles.thumbnail}/>
-          <Text>{item.name.first} {item.name.last}</Text>
-          <TouchableHighlight onPress={() => {
-            Alert.alert("", item.phone)
-            console.log("Hello");
-          }}>
-          <Image source={require('./image/phone.png')} style={styles.image}/>
-          </TouchableHighlight>
-        </View>
-      )
-      }/>
+    <View style={styles.main}>
+      <TextInput placeholder="Date" onChangeText={(text) => setDate(text)} style={styles.textinputs}/>
+      <TextInput placeholder="AQI"  onChangeText={(text) => setAqi(text)} style={styles.textinputs}/>
+      <View>
+        <Button title="add new aqi" onPress={() => {
+          setData(data.push([date, aqi]));
+          console.log(data);
+        }}/>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  list: {
+  main: {
     width: '100%',
-    borderWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  }, image: {
-    width: 50,
-    height: 50
-  }, thumbnail: {
-    width: 50,
-    height: 50
+    height: '100%',
+    paddingTop: 50
+  }, 
+  textinputs: {
+    width: '100%',
+    height: 30,
+    alignItems: 'center',
+    padding: 10
   }
 });
 
